@@ -14,10 +14,13 @@
 	},
 	"devDependencies": {
 		"@preact/preset-vite": "^2.10.2",
+		"babel-plugin-htm": "^3.0.0",
+		"babel-plugin-transform-react-jsx": "^6.24.1",
 		"eslint": "^9.39.3",
 		"eslint-config-preact": "^2.0.0",
-		"babel-plugin-htm": "^3.0.0",
-		"vite": "^7.0.4"
+		"eslint-plugin-htm": "^1.0.1",
+		"vite": "^7.0.4",
+		"vite-plugin-babel": "^1.5.1"
 	},
 	"eslintConfig": {
 		"extends": "preact"

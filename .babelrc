@@ -1,0 +1,19 @@
+{
+    "plugins": [
+        [
+            "babel-plugin-transform-react-jsx",
+            {
+                "runtime": "automatic",
+                "importSource": "preact"
+            }
+        ],
+        [
+            "babel-plugin-htm",
+            {
+                "tag": "htm",
+                "pragma": "h",
+                "pragmaFrag": "Fragment"
+            }
+        ]
+    ]
+}

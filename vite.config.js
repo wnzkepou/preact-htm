@@ -1,12 +1,14 @@
 import { fileURLToPath, URL } from 'node:url';
 
 import { defineConfig } from 'vite';
-import preact from '@preact/preset-vite';
+import preact from '@preact/preset-vite'
+import babel from 'vite-plugin-babel'
 
 import path from 'path'
 import fs from 'fs'
 import { env } from 'process'
 import child_process from 'child_process'
+import { run } from 'node:test';
 
 
 const baseFolder =
@@ -38,7 +40,24 @@ if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
 
 // https://vite.dev/config/
 export default defineConfig({
-  	plugins: [preact()],
+  plugins: [
+    preact(),
+    babel({
+      babelConfig: {
+        plugins: [
+          ["babel-plugin-transform-react-jsx", {
+            "runtime": "automatic",
+            "importSource": "preact"
+          }],
+          ["babel-plugin-htm", {
+            "tag": "htm",
+            "pragma": "h",
+            "pragmaFrag": "Fragment"
+          }]
+        ]
+      }
+    })
+  ],
   build: {
     commonjsOptions: {
       transformMixedEsModules: true,
@@ -50,9 +69,9 @@ export default defineConfig({
         index: fileURLToPath(new URL('./index.html', import.meta.url))
       },
       output: {
-        entryFileNames: '/assets/[name].js',
-        // chunkFileNames: '/assets/components/[name].js',
-        assetFileNames: '/assets/[name].[ext]',
+        entryFileNames: 'assets/[name].js',
+        // chunkFileNames: 'assets/components/[name].js',
+        assetFileNames: 'assets/[name].[ext]',
         // manualChunks: {
         //     Carousel: ['./src/components/Carousel.jsx'],
         // }
