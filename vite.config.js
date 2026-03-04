@@ -45,9 +45,9 @@ export default defineConfig({
     babel({
       babelConfig: {
         plugins: [
-          ["babel-plugin-transform-react-jsx", {
-            "runtime": "automatic",
-            "importSource": "preact"
+          ["@babel/plugin-transform-react-jsx", {
+            "pragma": "h",
+            "pragmaFrag": "Fragment"
           }],
           ["babel-plugin-htm", {
             "tag": "htm",
